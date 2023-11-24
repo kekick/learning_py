@@ -20,7 +20,7 @@ c = SingletonFive('c')
 d = SingletonFive('d')
 e = SingletonFive('e')
 f = SingletonFive('f')
-g = SingletonFive('G')
+
 print(SingletonFive.objects)
 
 print(f)
