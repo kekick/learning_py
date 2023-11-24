@@ -1,13 +1,17 @@
 class SingletonFive:
-    objects = {1: None, 2: None, 3: None, 4: None, 5: None}
+    __instance = None
+    __count = 0
 
     def __new__(cls, *args, **kwargs):
-        s5 = cls.objects
-        for i in range(1, 6):
-            if not s5.get(i):
-                s5[i] = super().__new__(cls)
+        if cls.__count < 5:
+            cls.__instance = super().__new__(cls)
+            cls.__count += 1
+        return cls.__instance
 
-        return s5[max(cls.objects.keys()) if s5[max(cls.objects.keys())] else None]
+
+
+
+
 
     def __init__(self, name):
         self.name = name
@@ -24,4 +28,3 @@ f = SingletonFive('f')
 print(SingletonFive.objects)
 
 print(f)
-print(g)
