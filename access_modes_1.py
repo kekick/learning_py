@@ -79,3 +79,60 @@ class Book:
     def get_price(self):
         return self.__price
 
+
+class Line:
+
+    def __init__(self, x1, y1, x2, y2):
+        self.__x1, self.__x2 = x1, x2
+        self.__y1, self.__y2 = y1, y2
+
+    def set_coords(self, x1, y1, x2, y2):
+        self.__x1, self.__x2 = x1, x2
+        self.__y1, self.__y2 = y1, y2
+
+    def get_coords(self):
+        return self.__x1, self.__y1, self.__x2, self.__y2
+
+    def draw(self):
+        print(*self.get_coords())
+
+
+class Point:
+
+    def __init__(self, x, y):
+        self.__x, self.__y = x, y
+
+    def get_coords(self):
+        return self.__x, self.__y
+
+
+class Rectangle:
+
+    def __init__(self, *args):
+        if len(args) == 2:
+            self.__sp = args[0]
+            self.__ep = args[1]
+        elif len(args) == 4 and all(map(lambda x: isinstance(x, int), args)):
+            self.__sp = Point(args[0], args[1])
+            self.__ep = Point(args[2], args[3])
+        else:
+            pass
+
+    def set_coords(self, sp, ep):
+        if isinstance(sp, Point) and isinstance(ep, Point):
+            self.__ep = ep
+            self.__sp = sp
+
+    def get_coords(self):
+        return self.__sp, self.__ep
+
+    def draw(self):
+        x1y1 = self.get_coords()[0].get_coords()
+        x2y2 = self.get_coords()[1].get_coords()
+        print(f"Прямоугольник с координатами: {x1y1} {x2y2}")
+
+
+
+
+
+
